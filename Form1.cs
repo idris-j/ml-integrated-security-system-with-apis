@@ -83,6 +83,25 @@ namespace File_Security_System
             isFile = false;
 
         }
+        public void removeBackSlash()
+        { 
+        }
+        public void goBack() 
+        {
+            try
+            {
+                removeBackSlash();
+                string path = filePathTextBox.Text;
+                path = path.Substring(0, path.LastIndexOf("/"));
+                this.isFile = false;
+                filePathTextBox.Text = path;
+                removeBackSlash();
+            }
+            catch (Exception e)
+            { 
+            
+            }
+        }
         private void goButton_Click(object sender, EventArgs e)
         {
             loadButonAction();
