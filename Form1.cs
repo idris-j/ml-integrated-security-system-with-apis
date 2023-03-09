@@ -6,8 +6,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Expressions;
 
 namespace File_Security_System
 {
@@ -28,6 +30,78 @@ namespace File_Security_System
             filePathTextBox.Text = filePath;
             loadFileAndDirectories();
         }
+        public void loadFileDetails()
+        { 
+            string tempFilePath = "";
+            webBrowser1.Navigate("");
+            FileAttributes fileAttr;
+            try
+            {
+                if (isFile)
+                {
+                    tempFilePath = filePath + "\\" + currentlySelectedItemName;
+                    FileInfo fileDetails = new FileInfo(tempFilePath);
+                    fileNameLabel.Text = fileDetails.Name;
+                    fileTypeLabel.Text = fileDetails.Extension;
+
+                    fileTypeLabel.Text = fileDetails.Extension;
+                    long fileSizeInBytes = fileDetails.Length;
+                    double fileSizeInKB = fileSizeInBytes / 1024.0;
+                    double fileSizeInMB = fileSizeInKB / 1024.0;
+
+                    if (fileSizeInMB >= 1)
+                    {
+                        fileSizeLabel.Text = fileSizeInMB.ToString("0.00") + " MB";
+                    }
+                    else if (fileSizeInKB >= 1)
+                    {
+                        fileSizeLabel.Text = fileSizeInKB.ToString("0.00") + " KB";
+                    }
+                    else
+                    {
+                        fileSizeLabel.Text = fileSizeInBytes.ToString() + " bytes";
+                    }
+
+                    fileAttr = File.GetAttributes(tempFilePath);
+                    FileInfo file = new FileInfo(tempFilePath);
+                    string fileExtension = file.Extension.ToLower();
+                    switch (fileExtension)
+                    {
+                        case ".mp4":
+                        case ".avi":
+                        case ".mkv":
+                            string videoPath = @"C:/Users/JJ.ehub247/Videos/To.Gerard.2020.720p.WEBRip.x264.AAC-[YTS.MX].mp4";
+                            string html = "<!DOCTYPE html><html><head></head><body>" +
+                                          $"<video width=\"100%\" height=\"100%\" controls><source src=\"{videoPath}\" type=\"video/mp4\"></video>" +
+                                          "</body></html>";
+                            webBrowser1.Navigate(html);
+                            break;
+                        case ".png":
+                        case ".jpg":
+                        case ".txt":
+                            webBrowser1.Navigate(tempFilePath);
+                            webBrowser1.DocumentCompleted += (sender, e) => {
+                                webBrowser1.Document.Body.Style = "zoom: " + (webBrowser1.Width / (double)webBrowser1.Document.Body.ScrollRectangle.Width * 100) + "%";
+                            };
+                            break;
+                        default:
+                            webBrowser1.DocumentText = "<html><body><p>Unable to preview file: </p></body></html>";
+                            break;
+                    }
+                }
+                else
+                {
+                    fileAttr = File.GetAttributes(filePath);
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
         public void loadFileAndDirectories() 
         {
             DirectoryInfo fileList;
@@ -41,7 +115,27 @@ namespace File_Security_System
                     FileInfo fileDetails = new FileInfo(tempFilePath);
                     fileNameLabel.Text = fileDetails.Name;
                     fileTypeLabel.Text = fileDetails.Extension;
+
+                    fileTypeLabel.Text = fileDetails.Extension;
+                    long fileSizeInBytes = fileDetails.Length;
+                    double fileSizeInKB = fileSizeInBytes / 1024.0;
+                    double fileSizeInMB = fileSizeInKB / 1024.0;
+
+                    if (fileSizeInMB >= 1)
+                    {
+                        fileSizeLabel.Text = fileSizeInMB.ToString("0.00") + " MB";
+                    }
+                    else if (fileSizeInKB >= 1)
+                    {
+                        fileSizeLabel.Text = fileSizeInKB.ToString("0.00") + " KB";
+                    }
+                    else
+                    {
+                        fileSizeLabel.Text = fileSizeInBytes.ToString() + " bytes";
+                    }
+
                     fileAttr = File.GetAttributes(tempFilePath);
+                    Process.Start(tempFilePath);
                 }
                 else
                 {
@@ -54,10 +148,49 @@ namespace File_Security_System
                     fileList = new DirectoryInfo(filePath);
                     FileInfo[] files = fileList.GetFiles(); //get all files
                     DirectoryInfo[] dirs = fileList.GetDirectories(); //get all directories
+                    string fileExtension = "";
                     listView1.Items.Clear();
                     for (int i = 0; i < files.Length; i++)
                     {
-                        listView1.Items.Add(files[i].Name, 8);
+                        fileExtension = files[i].Extension.ToLower();
+                        switch (fileExtension)
+                        {
+                            case ".mp3":
+                            case ".mp2":
+                                listView1.Items.Add(files[i].Name, 2);
+                                break;
+                            case ".exe":
+                            case ".com":
+                                listView1.Items.Add(files[i].Name, 9);
+                                break;
+                            case ".mp4":
+                            case ".avi":
+                            case ".mkv":
+                                listView1.Items.Add(files[i].Name, 6);
+                                break;
+                            case ".pdf":
+                                listView1.Items.Add(files[i].Name, 3);
+                                break;
+                            case ".doc":
+                            case ".docx":
+                                listView1.Items.Add(files[i].Name, 0);
+                                break;
+                            case ".png":
+                            case ".jpg":
+                            case ".jpeg":
+                                listView1.Items.Add(files[i].Name, 4);
+                                break;
+                            case ".txt":
+                            case ".xml":
+                            case ".ini":
+                            case ".json":
+                                listView1.Items.Add(files[i].Name, 10);
+                                break;
+
+                            default:
+                                listView1.Items.Add(files[i].Name, 8);
+                                break;
+                        }
 
                     }
                     for (int i = 0; i < dirs.Length; i++)
@@ -76,15 +209,29 @@ namespace File_Security_System
             }
         }
 
+        public void loadDetailsAction()
+        {
+            //removeBackSlash();
+            //filePath = filePathTextBox.Text;
+            loadFileDetails();
+            //isFile = false;
+        }
         public void loadButonAction() 
         {
+            removeBackSlash();
             filePath = filePathTextBox.Text;
             loadFileAndDirectories();
             isFile = false;
 
         }
+        //remove additional and inadvertently added backslash
         public void removeBackSlash()
-        { 
+        {
+            string path = filePathTextBox.Text;
+            if (path.LastIndexOf ("\\") == path.Length - 1)
+            {
+                filePathTextBox.Text = path.Substring(0, path.Length - 1);
+            }
         }
         public void goBack() 
         {
@@ -92,7 +239,7 @@ namespace File_Security_System
             {
                 removeBackSlash();
                 string path = filePathTextBox.Text;
-                path = path.Substring(0, path.LastIndexOf("/"));
+                path = path.Substring(0, path.LastIndexOf("\\"));
                 this.isFile = false;
                 filePathTextBox.Text = path;
                 removeBackSlash();
@@ -126,6 +273,17 @@ namespace File_Security_System
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             loadButonAction();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            goBack();
+            loadButonAction();
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            loadDetailsAction();
         }
     }
 }
