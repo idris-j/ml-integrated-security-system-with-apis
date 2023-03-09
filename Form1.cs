@@ -67,15 +67,15 @@ namespace File_Security_System
                     string fileExtension = file.Extension.ToLower();
                     switch (fileExtension)
                     {
-                        case ".mp4":
-                        case ".avi":
-                        case ".mkv":
-                            string videoPath = @"C:/Users/JJ.ehub247/Videos/To.Gerard.2020.720p.WEBRip.x264.AAC-[YTS.MX].mp4";
-                            string html = "<!DOCTYPE html><html><head></head><body>" +
-                                          $"<video width=\"100%\" height=\"100%\" controls><source src=\"{videoPath}\" type=\"video/mp4\"></video>" +
-                                          "</body></html>";
-                            webBrowser1.Navigate(html);
-                            break;
+                        //case ".mp4":
+                        //case ".avi":
+                        //case ".mkv":
+                        //    string videoPath = tempFilePath;
+                        //    string html = "<!DOCTYPE html><html><head></head><body>" +
+                        //                  $"<video width=\"100%\" height=\"100%\" controls><source src=\"{videoPath}\" type=\"video/mp4\"></video>" +
+                        //                  "</body></html>";
+                        //    webBrowser1.Navigate(html);
+                        //    break;
                         case ".png":
                         case ".jpg":
                         case ".txt":
