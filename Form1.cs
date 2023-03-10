@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace File_Security_System
 {
@@ -102,6 +103,10 @@ namespace File_Security_System
             }
 
         }
+        public void loadVideo()
+        {
+
+        }
         public void loadFileAndDirectories() 
         {
             DirectoryInfo fileList;
@@ -135,7 +140,22 @@ namespace File_Security_System
                     }
 
                     fileAttr = File.GetAttributes(tempFilePath);
-                    Process.Start(tempFilePath);
+                    FileInfo file = new FileInfo(tempFilePath);
+                    string fileExtension = file.Extension.ToLower();
+                    switch (fileExtension)
+                    {
+                        case ".mp4":
+                        case ".avi":
+                        case ".mkv":
+                            string videoPath = tempFilePath;
+
+                            var fileViewerForm = new fileViewerForm(videoPath);
+                            fileViewerForm.Show();
+                            break;
+                        default:
+                            Process.Start(tempFilePath);
+                            break;
+                    }
                 }
                 else
                 {
