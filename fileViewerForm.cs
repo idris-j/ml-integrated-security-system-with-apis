@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -26,7 +27,10 @@ namespace File_Security_System
         {
             if (filePath.EndsWith(".mp4"))
             {
-                fileBrowser.Navigate(filePath);
+                //mediaElement requires an assembly reference "PresentatonFramework"
+                MediaElement mediaElement = new MediaElement();
+                mediaElement.Source = new Uri(filePath);
+                mediaElement.Play();
                 btnPlay.Visible = true;
                 btnPause.Visible = true;
                 btnForward.Visible = true;
@@ -56,37 +60,37 @@ namespace File_Security_System
 
         private void zoomInBtn_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
 
         }
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_PLAY, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_PLAY, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_PAUSE, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_PAUSE, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void btnForward_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_FORWARD, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_FORWARD, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void btnRewind_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void btnFit_Click(object sender, EventArgs e)
         {
-            fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
+            //fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
 
         }
 
