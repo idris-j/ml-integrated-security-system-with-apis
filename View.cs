@@ -14,14 +14,14 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace File_Security_System
 {
-    public partial class Form1 : Form
+    public partial class View : Form
     {
         //private string currentUser = Environment.UserName;
         //private string userRootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), Environment.UserName);
         private string filePath = Path.Combine("C:\\", "Users", Environment.UserName);
         private bool isFile = false; //its false for navigation
         private string currentlySelectedItemName;
-        public Form1()
+        public View()
         {
             InitializeComponent();
         }

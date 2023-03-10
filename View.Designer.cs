@@ -1,6 +1,6 @@
 ﻿namespace File_Security_System
 {
-    partial class Form1
+    partial class View
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(View));
             this.backButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
