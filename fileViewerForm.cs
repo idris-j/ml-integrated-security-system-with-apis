@@ -32,13 +32,9 @@ namespace File_Security_System
             {
                 if (filePath.EndsWith(".mp4"))
                 {
-                    //mediaElement requires an assembly reference "PresentatonFramework"
-                    mediaElement.Source = new Uri(filePath);
-                    mediaElement.Play();
-                    btnPlay.Visible = true;
-                    btnPause.Visible = true;
-                    btnForward.Visible = true;
-                    btnRewind.Visible = true;
+                    string x = filePath;
+                    axWindowsMediaPlayer1.URL = x;
+                    pictureView.Visible = false;
                 }
                 else if (filePath.EndsWith(".txt"))
                 {
@@ -63,6 +59,7 @@ namespace File_Security_System
                     zoomInBtn.Visible = true;
                     btnZoomOut.Visible = true;
                     btnFit.Visible = true;
+                    axWindowsMediaPlayer1.Visible = false;
                 }
             }
             catch (NotSupportedException ex)
@@ -75,7 +72,7 @@ namespace File_Security_System
         private void UpdateImageSize()
         {
             System.Drawing.Image currentImage = System.Drawing.Image.FromFile(filePath);
-             pictureView.Width = currentImage.Width * _zoomLevel / 100;
+            pictureView.Width = currentImage.Width * _zoomLevel / 100;
             pictureView.Height = currentImage.Height * _zoomLevel / 100;
         }
 
@@ -131,5 +128,24 @@ namespace File_Security_System
 
         }
 
+        private void pictureView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileViewerForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void axWindowsMediaPlayerView_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

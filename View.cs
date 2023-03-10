@@ -11,17 +11,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
+using WMPLib;
+using AxWMPLib;
 
 namespace File_Security_System
 {
-    public partial class Form1 : Form
+    public partial class View : Form
     {
         //private string currentUser = Environment.UserName;
         //private string userRootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), Environment.UserName);
         private string filePath = Path.Combine("C:\\", "Users", Environment.UserName);
         private bool isFile = false; //its false for navigation
         private string currentlySelectedItemName;
-        public Form1()
+        public View()
         {
             InitializeComponent();
         }
@@ -68,15 +70,15 @@ namespace File_Security_System
                     string fileExtension = file.Extension.ToLower();
                     switch (fileExtension)
                     {
-                        case ".mp4":
-                        case ".avi":
-                        case ".mkv":
-                            string videoPath = tempFilePath;
-                            string html = "<!DOCTYPE html><html><head></head><body>" +
-                                          $"<video width=\"100%\" height=\"100%\" controls><source src=\"{videoPath}\" type=\"video/mp4\"></video>" +
-                                          "</body></html>";
-                            webBrowser1.Navigate(html);
-                            break;
+                        //case ".mp4":
+                        //case ".avi":
+                        //case ".mkv":
+                        //    string videoPath = tempFilePath;
+                        //    string html = "<!DOCTYPE html><html><head></head><body>" +
+                        //                  $"<video width=\"100%\" height=\"100%\" controls><source src=\"{videoPath}\" type=\"video/mp4\"></video>" +
+                        //                  "</body></html>";
+                        //    webBrowser1.Navigate(html);
+                        //    break;
                         case ".png":
                         case ".jpg":
                         case ".txt":
@@ -142,17 +144,19 @@ namespace File_Security_System
                     fileAttr = File.GetAttributes(tempFilePath);
                     FileInfo file = new FileInfo(tempFilePath);
                     string fileExtension = file.Extension.ToLower();
+                    var fileViewerForm = new fileViewerForm(tempFilePath);
                     switch (fileExtension)
                     {
                         case ".mp4":
                         case ".avi":
                         case ".mkv":
+                            //var fileViewerForm = new fileViewerForm(tempFilePath);
+                            //AxWindowsMediaPlayer player = new AxWindowsMediaPlayer();
+                            fileViewerForm.Show();
+                            break;
                         case ".txt":
                         case ".jpg":
                         case ".png":
-                            string videoPath = tempFilePath;
-
-                            var fileViewerForm = new fileViewerForm(videoPath);
                             fileViewerForm.Show();
                             break;
                         default:
@@ -308,5 +312,11 @@ namespace File_Security_System
         {
             loadDetailsAction();
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

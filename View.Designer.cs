@@ -1,6 +1,6 @@
 ﻿namespace File_Security_System
 {
-    partial class Form1
+    partial class View
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(View));
             this.backButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -72,6 +72,7 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
@@ -133,7 +134,7 @@
             this.webBrowser1.Size = new System.Drawing.Size(250, 332);
             this.webBrowser1.TabIndex = 9;
             // 
-            // Form1
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +147,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.backButton);
-            this.Name = "Form1";
+            this.Name = "View";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

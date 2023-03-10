@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fileViewerForm));
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
@@ -37,7 +38,9 @@
             this.btnFit = new System.Windows.Forms.Button();
             this.zoomInBtn = new System.Windows.Forms.Button();
             this.pictureView = new System.Windows.Forms.PictureBox();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnZoomOut
@@ -125,12 +128,24 @@
             this.pictureView.Size = new System.Drawing.Size(776, 385);
             this.pictureView.TabIndex = 10;
             this.pictureView.TabStop = false;
+            this.pictureView.Click += new System.EventHandler(this.pictureView_Click);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 12);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(776, 385);
+            this.axWindowsMediaPlayer1.TabIndex = 11;
+            this.axWindowsMediaPlayer1.Enter += new System.EventHandler(this.axWindowsMediaPlayer1_Enter);
             // 
             // fileViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.pictureView);
             this.Controls.Add(this.zoomInBtn);
             this.Controls.Add(this.btnFit);
@@ -141,8 +156,10 @@
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnZoomOut);
             this.Name = "fileViewerForm";
-            this.Text = "Form2";
+            this.Text = "Player";
+            this.Load += new System.EventHandler(this.fileViewerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,5 +174,6 @@
         private System.Windows.Forms.Button btnFit;
         private System.Windows.Forms.Button zoomInBtn;
         private System.Windows.Forms.PictureBox pictureView;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
