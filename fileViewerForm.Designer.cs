@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnZoomIn = new System.Windows.Forms.Button();
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
@@ -37,18 +36,13 @@
             this.btnRewind = new System.Windows.Forms.Button();
             this.btnFit = new System.Windows.Forms.Button();
             this.zoomInBtn = new System.Windows.Forms.Button();
+            this.pictureView = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnZoomIn
-            // 
-            this.btnZoomIn.Location = new System.Drawing.Point(0, 0);
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(75, 23);
-            this.btnZoomIn.TabIndex = 8;
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(282, 403);
+            this.btnZoomOut.Location = new System.Drawing.Point(198, 403);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
             this.btnZoomOut.TabIndex = 1;
@@ -58,7 +52,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(363, 403);
+            this.btnPlay.Location = new System.Drawing.Point(279, 403);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 2;
@@ -68,7 +62,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(433, 403);
+            this.btnPause.Location = new System.Drawing.Point(349, 403);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 3;
@@ -78,7 +72,7 @@
             // 
             // btnForward
             // 
-            this.btnForward.Location = new System.Drawing.Point(514, 403);
+            this.btnForward.Location = new System.Drawing.Point(430, 403);
             this.btnForward.Name = "btnForward";
             this.btnForward.Size = new System.Drawing.Size(75, 23);
             this.btnForward.TabIndex = 4;
@@ -88,15 +82,15 @@
             // 
             // fileBrowser
             // 
-            this.fileBrowser.Location = new System.Drawing.Point(-2, 12);
+            this.fileBrowser.Location = new System.Drawing.Point(12, 12);
             this.fileBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.fileBrowser.Name = "fileBrowser";
-            this.fileBrowser.Size = new System.Drawing.Size(801, 385);
+            this.fileBrowser.Size = new System.Drawing.Size(776, 385);
             this.fileBrowser.TabIndex = 5;
             // 
             // btnRewind
             // 
-            this.btnRewind.Location = new System.Drawing.Point(595, 403);
+            this.btnRewind.Location = new System.Drawing.Point(511, 403);
             this.btnRewind.Name = "btnRewind";
             this.btnRewind.Size = new System.Drawing.Size(75, 23);
             this.btnRewind.TabIndex = 6;
@@ -106,7 +100,7 @@
             // 
             // btnFit
             // 
-            this.btnFit.Location = new System.Drawing.Point(686, 403);
+            this.btnFit.Location = new System.Drawing.Point(602, 403);
             this.btnFit.Name = "btnFit";
             this.btnFit.Size = new System.Drawing.Size(75, 23);
             this.btnFit.TabIndex = 7;
@@ -116,7 +110,7 @@
             // 
             // zoomInBtn
             // 
-            this.zoomInBtn.Location = new System.Drawing.Point(201, 403);
+            this.zoomInBtn.Location = new System.Drawing.Point(117, 403);
             this.zoomInBtn.Name = "zoomInBtn";
             this.zoomInBtn.Size = new System.Drawing.Size(75, 23);
             this.zoomInBtn.TabIndex = 9;
@@ -124,11 +118,20 @@
             this.zoomInBtn.UseVisualStyleBackColor = true;
             this.zoomInBtn.Click += new System.EventHandler(this.zoomInBtn_Click);
             // 
+            // pictureView
+            // 
+            this.pictureView.Location = new System.Drawing.Point(12, 12);
+            this.pictureView.Name = "pictureView";
+            this.pictureView.Size = new System.Drawing.Size(776, 385);
+            this.pictureView.TabIndex = 10;
+            this.pictureView.TabStop = false;
+            // 
             // fileViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureView);
             this.Controls.Add(this.zoomInBtn);
             this.Controls.Add(this.btnFit);
             this.Controls.Add(this.btnRewind);
@@ -137,16 +140,14 @@
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnZoomOut);
-            this.Controls.Add(this.btnZoomIn);
             this.Name = "fileViewerForm";
             this.Text = "Form2";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPause;
@@ -155,5 +156,6 @@
         private System.Windows.Forms.Button btnRewind;
         private System.Windows.Forms.Button btnFit;
         private System.Windows.Forms.Button zoomInBtn;
+        private System.Windows.Forms.PictureBox pictureView;
     }
 }
