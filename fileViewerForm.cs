@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using AxWMPLib;
 
 namespace File_Security_System
 {
@@ -33,7 +34,18 @@ namespace File_Security_System
                 if (filePath.EndsWith(".mp4"))
                 {
                     string x = filePath;
+                    // Create a panel control to enable full screen of player
+                    System.Windows.Forms.Panel panel1 = new System.Windows.Forms.Panel();
+                    panel1.BorderStyle = BorderStyle.Fixed3D;
+                    panel1.Dock = DockStyle.Fill;
+
+                    axWindowsMediaPlayer1.Dock = DockStyle.Fill;
+                    // Create a panel control to enable full screen of player
+
+                    // Add the AxWindowsMediaPlayer control to the panel control
+                    //panel1.Controls.Add(axWindowsMediaPlayer1) ;
                     axWindowsMediaPlayer1.URL = x;
+
                     pictureView.Visible = false;
                 }
                 else if (filePath.EndsWith(".txt"))

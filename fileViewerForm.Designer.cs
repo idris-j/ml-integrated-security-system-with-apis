@@ -35,10 +35,10 @@
             this.btnForward = new System.Windows.Forms.Button();
             this.fileBrowser = new System.Windows.Forms.WebBrowser();
             this.btnRewind = new System.Windows.Forms.Button();
-            this.btnFit = new System.Windows.Forms.Button();
             this.zoomInBtn = new System.Windows.Forms.Button();
             this.pictureView = new System.Windows.Forms.PictureBox();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.btnFit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -101,16 +101,6 @@
             this.btnRewind.UseVisualStyleBackColor = true;
             this.btnRewind.Click += new System.EventHandler(this.btnRewind_Click);
             // 
-            // btnFit
-            // 
-            this.btnFit.Location = new System.Drawing.Point(602, 403);
-            this.btnFit.Name = "btnFit";
-            this.btnFit.Size = new System.Drawing.Size(75, 23);
-            this.btnFit.TabIndex = 7;
-            this.btnFit.Text = "Fit to Screen";
-            this.btnFit.UseVisualStyleBackColor = true;
-            this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
-            // 
             // zoomInBtn
             // 
             this.zoomInBtn.Location = new System.Drawing.Point(117, 403);
@@ -139,6 +129,16 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(776, 385);
             this.axWindowsMediaPlayer1.TabIndex = 11;
             this.axWindowsMediaPlayer1.Enter += new System.EventHandler(this.axWindowsMediaPlayer1_Enter);
+            // 
+            // btnFit
+            // 
+            this.btnFit.Location = new System.Drawing.Point(602, 403);
+            this.btnFit.Name = "btnFit";
+            this.btnFit.Size = new System.Drawing.Size(75, 23);
+            this.btnFit.TabIndex = 7;
+            this.btnFit.Text = "Fit to Screen";
+            this.btnFit.UseVisualStyleBackColor = true;
+            this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
             // 
             // fileViewerForm
             // 
@@ -171,9 +171,9 @@
         private System.Windows.Forms.Button btnForward;
         private System.Windows.Forms.WebBrowser fileBrowser;
         private System.Windows.Forms.Button btnRewind;
-        private System.Windows.Forms.Button btnFit;
         private System.Windows.Forms.Button zoomInBtn;
         private System.Windows.Forms.PictureBox pictureView;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Button btnFit;
     }
 }
