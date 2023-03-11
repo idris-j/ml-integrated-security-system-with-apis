@@ -94,10 +94,12 @@
             // 
             // filePathTextBox
             // 
+            this.filePathTextBox.AcceptsReturn = true;
             this.filePathTextBox.Location = new System.Drawing.Point(81, 11);
             this.filePathTextBox.Name = "filePathTextBox";
             this.filePathTextBox.Size = new System.Drawing.Size(886, 20);
             this.filePathTextBox.TabIndex = 3;
+            this.filePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.filePathTextBox_KeyDown);
             // 
             // fileNameLabel
             // 
@@ -148,7 +150,7 @@
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.backButton);
             this.Name = "View";
-            this.Text = "Form1";
+            this.Text = "Explorer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

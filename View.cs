@@ -13,6 +13,7 @@ using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using WMPLib;
 using AxWMPLib;
+using System.Windows.Shapes;
 
 namespace File_Security_System
 {
@@ -20,7 +21,8 @@ namespace File_Security_System
     {
         //private string currentUser = Environment.UserName;
         //private string userRootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), Environment.UserName);
-        private string filePath = Path.Combine("C:\\", "Users", Environment.UserName);
+        private string filePath = System.IO.Path.Combine("C:\\", "Users", Environment.UserName);
+        private string cmdDir = System.IO.Path.Combine("C:\\", "Users", Environment.UserName);
         private bool isFile = false; //its false for navigation
         private string currentlySelectedItemName;
         public View()
@@ -30,6 +32,7 @@ namespace File_Security_System
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true; //enable keypress events to be raised:
             filePathTextBox.Text = filePath;
             loadFileAndDirectories();
         }
@@ -247,6 +250,13 @@ namespace File_Security_System
         {
             removeBackSlash();
             filePath = filePathTextBox.Text;
+            if (filePath.ToLower() == "cmd")
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.WorkingDirectory = cmdDir;
+                process.Start();
+            }
             loadFileAndDirectories();
             isFile = false;
 
@@ -318,5 +328,16 @@ namespace File_Security_System
 
         }
 
+
+        private void filePathTextBox_KeyDown(object sender, KeyEventArgs e) //handle enter key event
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                loadButonAction();
+                // Set e.Handled to true to prevent the textbox from processing the Enter key as input
+                e.Handled = true;
+            }
+
+        }
     }
 }
