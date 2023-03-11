@@ -49,6 +49,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registration.Designer.cs">
+      <DependentUpon>registration.cs</DependentUpon>
+    </Compile>
     <Compile Include="View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fileViewerForm.resx">
       <DependentUpon>fileViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registration.resx">
+      <DependentUpon>registration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View.resx">
       <DependentUpon>View.cs</DependentUpon>

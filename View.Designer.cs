@@ -149,7 +149,9 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.backButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "View";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Explorer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
