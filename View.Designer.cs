@@ -39,33 +39,40 @@
             this.fileTypeLabel = new System.Windows.Forms.Label();
             this.fileSizeLabel = new System.Windows.Forms.Label();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(3, 10);
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(6, 0);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.Size = new System.Drawing.Size(35, 21);
             this.backButton.TabIndex = 0;
-            this.backButton.Text = "Back";
+            this.backButton.Text = "<-";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // goButton
             // 
-            this.goButton.Location = new System.Drawing.Point(973, 9);
+            this.goButton.FlatAppearance.BorderSize = 0;
+            this.goButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goButton.Location = new System.Drawing.Point(1007, 0);
             this.goButton.Name = "goButton";
-            this.goButton.Size = new System.Drawing.Size(75, 23);
+            this.goButton.Size = new System.Drawing.Size(38, 22);
             this.goButton.TabIndex = 1;
-            this.goButton.Text = "Go";
+            this.goButton.Text = "->";
             this.goButton.UseVisualStyleBackColor = true;
             this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
             // listView1
             // 
+            this.listView1.BackColor = System.Drawing.SystemColors.Control;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.iconList;
-            this.listView1.Location = new System.Drawing.Point(12, 38);
+            this.listView1.Location = new System.Drawing.Point(12, 45);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(736, 468);
             this.listView1.SmallImageList = this.iconList;
@@ -95,16 +102,19 @@
             // filePathTextBox
             // 
             this.filePathTextBox.AcceptsReturn = true;
-            this.filePathTextBox.Location = new System.Drawing.Point(81, 11);
+            this.filePathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.filePathTextBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filePathTextBox.Location = new System.Drawing.Point(82, 4);
             this.filePathTextBox.Name = "filePathTextBox";
-            this.filePathTextBox.Size = new System.Drawing.Size(886, 20);
+            this.filePathTextBox.Size = new System.Drawing.Size(886, 16);
             this.filePathTextBox.TabIndex = 3;
+            this.filePathTextBox.TextChanged += new System.EventHandler(this.filePathTextBox_TextChanged);
             this.filePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.filePathTextBox_KeyDown);
             // 
             // fileNameLabel
             // 
             this.fileNameLabel.AutoSize = true;
-            this.fileNameLabel.Location = new System.Drawing.Point(13, 519);
+            this.fileNameLabel.Location = new System.Drawing.Point(13, 525);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(13, 13);
             this.fileNameLabel.TabIndex = 5;
@@ -113,7 +123,7 @@
             // fileTypeLabel
             // 
             this.fileTypeLabel.AutoSize = true;
-            this.fileTypeLabel.Location = new System.Drawing.Point(350, 519);
+            this.fileTypeLabel.Location = new System.Drawing.Point(350, 525);
             this.fileTypeLabel.Name = "fileTypeLabel";
             this.fileTypeLabel.Size = new System.Drawing.Size(13, 13);
             this.fileTypeLabel.TabIndex = 7;
@@ -122,7 +132,7 @@
             // fileSizeLabel
             // 
             this.fileSizeLabel.AutoSize = true;
-            this.fileSizeLabel.Location = new System.Drawing.Point(709, 520);
+            this.fileSizeLabel.Location = new System.Drawing.Point(709, 526);
             this.fileSizeLabel.Name = "fileSizeLabel";
             this.fileSizeLabel.Size = new System.Drawing.Size(13, 13);
             this.fileSizeLabel.TabIndex = 8;
@@ -135,12 +145,28 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(250, 332);
             this.webBrowser1.TabIndex = 9;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::File_Security_System.Properties.Resources.logout_1_;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1022, 511);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(17, 22);
+            this.button1.TabIndex = 10;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 545);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.fileSizeLabel);
             this.Controls.Add(this.fileTypeLabel);
@@ -149,7 +175,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.backButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "View";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Explorer";
@@ -170,6 +196,7 @@
         private System.Windows.Forms.ImageList iconList;
         private System.Windows.Forms.Label fileSizeLabel;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

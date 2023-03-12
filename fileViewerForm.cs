@@ -12,11 +12,16 @@ using System.Windows.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using AxWMPLib;
+using System.Diagnostics;
 
 namespace File_Security_System
 {
     public partial class fileViewerForm : Form
     {
+        List<string> movieExt = new List<string> {"mp4","mov","mkv","gif"};
+        List<string> imageExt = new List<string> { "jpg", "jpeg", "png", "" };
+        List<string> txtExt = new List<string> { "txt", "ini", "cs", "py" };
+
         MediaElement mediaElement = new MediaElement();
         private string filePath;
         public System.Drawing.Image cImage;
@@ -25,13 +30,13 @@ namespace File_Security_System
         {
             InitializeComponent();
             this.filePath = filePath;
-            LoadFile(filePath);
+            LoadFile(filePath.ToLower());
         }
         private void LoadFile(string filePath)
         {
             try
             {
-                if (filePath.EndsWith(".mp4"))
+                if (filePath.EndsWith("mp4") || filePath.EndsWith("mkv") || filePath.EndsWith("mov") || filePath.EndsWith("gif"))
                 {
                     string x = filePath;
                     // Create a panel control to enable full screen of player
@@ -44,34 +49,34 @@ namespace File_Security_System
 
                     // Add the AxWindowsMediaPlayer control to the panel control
                     //panel1.Controls.Add(axWindowsMediaPlayer1) ;
+                    webBrowser1.Hide();
                     axWindowsMediaPlayer1.URL = x;
 
-                    pictureView.Visible = false;
                 }
-                else if (filePath.EndsWith(".txt"))
-                {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        string content = reader.ReadToEnd();
-                        fileBrowser.DocumentText = content;
-                    }
-                    btnPlay.Visible = false;
-                    btnPause.Visible = false;
-                    btnForward.Visible = false;
-                    btnRewind.Visible = false;
-                    zoomInBtn.Visible = false;
-                    btnZoomOut.Visible = false;
-                    btnFit.Visible = false;
-                }
-                else if (filePath.EndsWith(".jpg") || filePath.EndsWith(".jpeg") || filePath.EndsWith(".png") || filePath.EndsWith(".gif"))
+                else if (filePath.EndsWith("jpg") || filePath.EndsWith("jpeg") || filePath.EndsWith("png") || filePath.EndsWith("gif") || filePath.EndsWith("txt") || filePath.EndsWith("ini") || filePath.EndsWith("cs") || filePath.EndsWith("py"))
                 {
                     //fileBrowser.Navigate(filePath);
-                    System.Drawing.Image currentImage = System.Drawing.Image.FromFile(filePath);
-                    pictureView.Image = currentImage;
-                    zoomInBtn.Visible = true;
-                    btnZoomOut.Visible = true;
-                    btnFit.Visible = true;
+                    //System.Drawing.Image currentImage = System.Drawing.Image.FromFile(filePath);
+                    //pictureView.Image = currentImage;
+
+                    // Create a panel control to enable full screen of player
+                    System.Windows.Forms.Panel panel1 = new System.Windows.Forms.Panel();
+                    panel1.BorderStyle = BorderStyle.Fixed3D;
+                    panel1.Dock = DockStyle.Fill;
+                    webBrowser1.Dock = DockStyle.Fill; 
+                    webBrowser1.Navigate(filePath);
+                    webBrowser1.DocumentCompleted += (sender, e) => {
+                        webBrowser1.Document.Body.Style = "zoom: " + (webBrowser1.Width / (double)webBrowser1.Document.Body.ScrollRectangle.Width * 100) + "%";
+                    };
                     axWindowsMediaPlayer1.Visible = false;
+                }
+                else
+                {
+                    //MessageBox.Show("Unsupported File Type", "File error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Process.Start(filePath);
+                    var fileViewerForm = new fileViewerForm("");
+                    fileViewerForm.Hide();
+                    return;
                 }
             }
             catch (NotSupportedException ex)
@@ -79,65 +84,6 @@ namespace File_Security_System
                 Console.WriteLine("Error message: " + ex.Message);
                 Console.WriteLine("Stack trace: " + ex.StackTrace);
             }
-        }
-
-        private void UpdateImageSize()
-        {
-            System.Drawing.Image currentImage = System.Drawing.Image.FromFile(filePath);
-            pictureView.Width = currentImage.Width * _zoomLevel / 100;
-            pictureView.Height = currentImage.Height * _zoomLevel / 100;
-        }
-
-        private void zoomInBtn_Click(object sender, EventArgs e)
-        {
-            if (_zoomLevel < 200)
-            {
-                _zoomLevel += 10;
-                UpdateImageSize();
-            }
-            //webBrowser.Document.InvokeScript("zoomIn");
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
-
-        }
-        private void btnZoomOut_Click(object sender, EventArgs e)
-        {
-            if (_zoomLevel > 10)
-            {
-                _zoomLevel -= 10;
-                UpdateImageSize();
-            }
-            //webBrowser.Document.InvokeScript("zoomOut");
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, 250, IntPtr.Zero);
-        }
-
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
-            mediaElement.Play();
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_PLAY, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
-        }
-
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            mediaElement.Pause();
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_PAUSE, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
-        }
-
-        private void btnForward_Click(object sender, EventArgs e)
-        {
-            mediaElement.Position += TimeSpan.FromSeconds(10);
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_FORWARD, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
-        }
-
-        private void btnRewind_Click(object sender, EventArgs e)
-        {
-            mediaElement.Position -= TimeSpan.FromSeconds(10);
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
-        }
-
-        private void btnFit_Click(object sender, EventArgs e)
-        {
-            //fileBrowser.ExecWB(OLECMDID.OLECMDID_BACK, OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, IntPtr.Zero, IntPtr.Zero);
-
         }
 
         private void pictureView_Click(object sender, EventArgs e)
@@ -156,6 +102,11 @@ namespace File_Security_System
         }
 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }

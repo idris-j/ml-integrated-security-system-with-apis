@@ -28,6 +28,7 @@ namespace File_Security_System
         public View()
         {
             InitializeComponent();
+            //listView1.Focus();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -123,49 +124,29 @@ namespace File_Security_System
                 {
                     tempFilePath = filePath + "\\" + currentlySelectedItemName;
                     FileInfo fileDetails = new FileInfo(tempFilePath);
-                    fileNameLabel.Text = fileDetails.Name;
-                    fileTypeLabel.Text = fileDetails.Extension;
-
-                    fileTypeLabel.Text = fileDetails.Extension;
-                    long fileSizeInBytes = fileDetails.Length;
-                    double fileSizeInKB = fileSizeInBytes / 1024.0;
-                    double fileSizeInMB = fileSizeInKB / 1024.0;
-
-                    if (fileSizeInMB >= 1)
-                    {
-                        fileSizeLabel.Text = fileSizeInMB.ToString("0.00") + " MB";
-                    }
-                    else if (fileSizeInKB >= 1)
-                    {
-                        fileSizeLabel.Text = fileSizeInKB.ToString("0.00") + " KB";
-                    }
-                    else
-                    {
-                        fileSizeLabel.Text = fileSizeInBytes.ToString() + " bytes";
-                    }
-
                     fileAttr = File.GetAttributes(tempFilePath);
                     FileInfo file = new FileInfo(tempFilePath);
                     string fileExtension = file.Extension.ToLower();
                     var fileViewerForm = new fileViewerForm(tempFilePath);
-                    switch (fileExtension)
-                    {
-                        case ".mp4":
-                        case ".avi":
-                        case ".mkv":
-                            //var fileViewerForm = new fileViewerForm(tempFilePath);
-                            //AxWindowsMediaPlayer player = new AxWindowsMediaPlayer();
-                            fileViewerForm.Show();
-                            break;
-                        case ".txt":
-                        case ".jpg":
-                        case ".png":
-                            fileViewerForm.Show();
-                            break;
-                        default:
-                            Process.Start(tempFilePath);
-                            break;
-                    }
+                    fileViewerForm.Show();
+                    //switch (fileExtension)
+                    //{
+                    //    case ".mp4":
+                    //    case ".avi":
+                    //    case ".mkv":
+                    //        //var fileViewerForm = new fileViewerForm(tempFilePath);
+                    //        //AxWindowsMediaPlayer player = new AxWindowsMediaPlayer();
+                    //        fileViewerForm.Show();
+                    //        break;
+                    //    case ".txt":
+                    //    case ".jpg":
+                    //    case ".png":
+                    //        fileViewerForm.Show();
+                    //        break;
+                    //    default:
+                    //        Process.Start(tempFilePath);
+                    //        break;
+                    //}
                 }
                 else
                 {
@@ -337,6 +318,25 @@ namespace File_Security_System
                 // Set e.Handled to true to prevent the textbox from processing the Enter key as input
                 e.Handled = true;
             }
+
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Application.Exit();
+
+            new login().Show();
+            View view = new View();
+            view.Hide();
+        }
+
+        private void filePathTextBox_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

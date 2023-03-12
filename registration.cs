@@ -42,17 +42,20 @@ namespace File_Security_System
             }
             else if (textBoxPass.Text == textBoxComPass.Text)
             {
-                conn.Open();//open connection
-                string register = "INSERT INTO TABLE user_tb VALUES (" + textBoxUsername + ","+ textBoxPass + ")";
+                conn.Open(); // open connection
+                string username = textBoxUsername.Text;
+                string password = textBoxPass.Text;
+                string register = "INSERT INTO user_tb (username, password) VALUES (@username, @password)";
                 command = new OleDbCommand(register, conn);
+                command.Parameters.AddWithValue("@username", textBoxUsername.Text);
+                command.Parameters.AddWithValue("@password", textBoxPass.Text);
                 command.ExecuteNonQuery();
                 conn.Close();
-
                 textBoxPass.Text = "";
                 textBoxComPass.Text = "";
                 textBoxUsername.Text = "";
 
-                MessageBox.Show("Success", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Success", "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
