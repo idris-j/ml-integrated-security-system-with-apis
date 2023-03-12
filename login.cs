@@ -36,13 +36,6 @@ namespace File_Security_System
                 MessageBox.Show("Username and Password fields are empty", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //else if (dr.Read() = true)
-            //{
-            //    MessageBox.Show("Success", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //    textBoxPass.Text = "";
-            //    textBoxUsername.Text = "";
-            //}
             else
             {
                 MessageBox.Show("Ivalid usernme or password", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
