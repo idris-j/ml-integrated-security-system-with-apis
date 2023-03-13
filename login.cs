@@ -73,11 +73,6 @@ namespace File_Security_System
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBoxShowPass_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -138,6 +133,11 @@ namespace File_Security_System
         private void label6_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

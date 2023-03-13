@@ -87,5 +87,10 @@ namespace File_Security_System
                 textBoxComPass.PasswordChar = '•';
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
